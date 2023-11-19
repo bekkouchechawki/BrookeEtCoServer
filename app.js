@@ -1,26 +1,17 @@
-import express from 'express';  // Importe le module Express pour créer le serveur
-import { config } from 'dotenv';  // Importe le module dotenv pour gérer les variables d'environnement
+import express from 'express';
+import { config } from 'dotenv';
 import mysql2 from 'mysql2';
-const app = express();
-config();// Utilisation du port défini dans .env ou 3000 par défaut
 
-const port = process.env.port;
+config();
+
+const app = express();
+const port = process.env.PORT || 1000; 
+
 app.use(express.json());
 
 app.get("/", function (request, response) {
   response.send("Bonjour tout le monde</>Utilisation du serveur Express");
 });
-
-
-
-// Démarre le serveur sur le port spécifié
-app.listen(port, () => {
-    console.log(`serveur express lancé sur le port ${port}`)
-});
-
-
-
-
 
 app.get("/getAllProducts", function (request, response) {
   const con = mysql2.createConnection({
@@ -31,12 +22,25 @@ app.get("/getAllProducts", function (request, response) {
   });
 
   con.connect(function (err) {
-    if (err) throw err;
-    con.query("SELECT * FROM Produit", function (err, result, fields) {
-      if (err) throw err;
-      response.status(200).json(result);
-    });
+    if (err) {
+      console.error('Erreur de connexion à la base de données :', err);
+      response.status(500).send('Erreur de connexion à la base de données');
+    } else {
+      con.query("SELECT * FROM Produit", function (err, result, fields) {
+        if (err) {
+          console.error('Erreur lors de la récupération des produits :', err);
+          response.status(500).send('Erreur lors de la récupération des produits');
+        } else {
+          response.status(200).json(result);
+        }
+        con.end(); // Fermer la connexion après utilisation
+      });
+    }
   });
 });
 
-export default app;  // Exportez l'application pour les tests
+app.listen(port, () => {
+  console.log(`Serveur Express lancé sur le port ${port}`);
+});
+
+export default app;
