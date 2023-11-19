@@ -1,12 +1,10 @@
 import express from 'express';  // Importe le module Express pour créer le serveur
 import { config } from 'dotenv';  // Importe le module dotenv pour gérer les variables d'environnement
-import bodyParser from 'body-parser';  // Importe le module body-parser pour analyser les corps des requêtes
-import mysql from 'mysql';
 import mysql2 from 'mysql2';
 const app = express();
 config();// Utilisation du port défini dans .env ou 3000 par défaut
 
-const port = process.env.port || 2000;
+const port = process.env.port;
 app.use(express.json());
 
 app.get("/", function (request, response) {
