@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 config();
 
@@ -33,7 +33,7 @@ app.get("/getAllProducts", function (request, response) {
         } else {
           response.status(200).json(result);
         }
-        con.end(); // Fermer la connexion après utilisation
+        con.end(); 
       });
     }
   });
