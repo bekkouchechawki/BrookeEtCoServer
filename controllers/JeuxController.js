@@ -1,7 +1,7 @@
 import { connection } from '../config/db.js';
 
+// Récupérer tous les jeux
 export const getAllJeux = (request, response) => {
-
   connection.query("SELECT * FROM Jeux", (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération des Jeux :', err);
@@ -9,7 +9,6 @@ export const getAllJeux = (request, response) => {
     } else {
       response.status(200).json(result);
     }
-    connection.end(); 
   });
 };
 

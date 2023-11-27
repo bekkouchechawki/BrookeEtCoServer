@@ -9,7 +9,6 @@ export const getAllProducts = (request, response) => {
     } else {
       response.status(200).json(result);
     }
-    connection.end(); 
   });
 };
 
