@@ -14,7 +14,7 @@ export const getAllFournisseurs= (request, response) => {
 
 export const getFournisseursById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Fournisseurs WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Fournisseurs WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Fournisseurs :', err);
       response.status(500).send('Erreur lors de la récupération du Fournisseurs');
@@ -49,7 +49,7 @@ export const createFournisseurs = (request, response) => {
 export const updateFournisseurs = (request, response) => {
   const id = request.params.id;
   const fournisseurs = request.body;
-  connection.query("UPDATE Fournisseurs SET ? WHERE id = ?", [fournisseurs, id], (err, result, fields) => {
+  connection.query("UPDATE Fournisseurs SET ? WHERE numero = ?", [fournisseurs, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Fournisseurs :', err);
       response.status(500).send('Erreur lors de la mise à jour du Fournisseurs');
@@ -61,7 +61,7 @@ export const updateFournisseurs = (request, response) => {
 
 export const deleteFournisseurs = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Fournisseurs WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Fournisseurs WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Livre :', err);
       response.status(500).send('Erreur lors de la suppression du Livre');

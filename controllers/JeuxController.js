@@ -14,7 +14,7 @@ export const getAllJeux = (request, response) => {
 
 export const getJeuxById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Jeux WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Jeux WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Jeux :', err);
       response.status(500).send('Erreur lors de la récupération du Jeux');
@@ -49,7 +49,7 @@ export const createJeux = (request, response) => {
 export const updateJeux = (request, response) => {
   const id = request.params.id;
   const jeux = request.body;
-  connection.query("UPDATE Jeux SET ? WHERE id = ?", [jeux, id], (err, result, fields) => {
+  connection.query("UPDATE Jeux SET ? WHERE idProduit = ?", [jeux, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Jeux :', err);
       response.status(500).send('Erreur lors de la mise à jour du Jeux');
@@ -61,7 +61,7 @@ export const updateJeux = (request, response) => {
 
 export const deleteJeux = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Jeux WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Jeux WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Jeux :', err);
       response.status(500).send('Erreur lors de la suppression du Jeux');

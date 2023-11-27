@@ -14,7 +14,7 @@ export const getAllCommandes = (request, response) => {
 
 export const getCommandeById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Commande WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Commande WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Commande :', err);
       response.status(500).send('Erreur lors de la récupération du Commande');
@@ -49,7 +49,7 @@ export const createCommande = (request, response) => {
 export const updateCommande = (request, response) => {
   const id = request.params.id;
   const commande = request.body;
-  connection.query("UPDATE Commande SET ? WHERE id = ?", [commande, id], (err, result, fields) => {
+  connection.query("UPDATE Commande SET ? WHERE numero = ?", [commande, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Commande :', err);
       response.status(500).send('Erreur lors de la mise à jour du Commande');
@@ -61,7 +61,7 @@ export const updateCommande = (request, response) => {
 
 export const deleteCommande = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Commande WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Commande WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Commande :', err);
       response.status(500).send('Erreur lors de la suppression du Commande');

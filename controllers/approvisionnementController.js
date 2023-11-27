@@ -14,7 +14,7 @@ export const getAllApprovisionnement = (request, response) => {
 
 export const getApprovisionnementById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Approvisionnement WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Approvisionnement WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération d Approvisionnement :', err);
       response.status(500).send('Erreur lors de la récupération dApprovisionnement');
@@ -49,7 +49,7 @@ export const createApprovisionnement = (request, response) => {
 export const updateApprovisionnement = (request, response) => {
   const id = request.params.id;
   const approvisionnement = request.body;
-  connection.query("UPDATE Approvisionnement SET ? WHERE id = ?", [approvisionnement, id], (err, result, fields) => {
+  connection.query("UPDATE Approvisionnement SET ? WHERE numero = ?", [approvisionnement, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour d Approvisionnement :', err);
       response.status(500).send('Erreur lors de la mise à jour d Approvisionnement');
@@ -61,7 +61,7 @@ export const updateApprovisionnement = (request, response) => {
 
 export const deleteApprovisionnement = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Approvisionnement WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Approvisionnement WHERE numero = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression d Approvisionnement :', err);
       response.status(500).send('Erreur lors de la suppression d Approvisionnement');

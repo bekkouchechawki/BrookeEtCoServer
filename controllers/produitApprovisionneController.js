@@ -14,7 +14,7 @@ export const getAllProduitApprovisionne = (request, response) => {
 
 export const getProduitApprovisionneById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM ProduitApprovisionne WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM ProduitApprovisionne WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Produit Approvisionne :', err);
       response.status(500).send('Erreur lors de la récupération du Produit Approvisionne');
@@ -49,7 +49,7 @@ export const createProduitApprovisionne = (request, response) => {
 export const updateProduitApprovisionne = (request, response) => {
   const id = request.params.id;
   const produitApprovisionne = request.body;
-  connection.query("UPDATE ProduitApprovisionne SET ? WHERE id = ?", [produitApprovisionne, id], (err, result, fields) => {
+  connection.query("UPDATE ProduitApprovisionne SET ? WHERE idProduit = ?", [produitApprovisionne, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du produit Approvisionne :', err);
       response.status(500).send('Erreur lors de la mise à jour du produit Approvisionne');
@@ -61,7 +61,7 @@ export const updateProduitApprovisionne = (request, response) => {
 
 export const deleteProduitApprovisionne = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM ProduitApprovisionne WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM ProduitApprovisionne WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Produit Approvisionne :', err);
       response.status(500).send('Erreur lors de la suppression du Produit Approvisionne');

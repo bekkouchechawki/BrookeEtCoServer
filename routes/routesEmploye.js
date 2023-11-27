@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 
 app.get("/getAllEmployes", getAllEmployes);
 app.get("/getAllEmployes/:id", getEmployeById);
-app.post("/createLivraison", createEmploye);
-app.put("/updateLivraison/:id", updateEmploye);
-app.delete("/deleteLivraison/:id", deletEmploye);
+app.post("/createEmploye", createEmploye);
+app.put("/updateEmploye/:id", updateEmploye);
+app.delete("/deletEmploye/:id", deletEmploye);
 
 export default app;

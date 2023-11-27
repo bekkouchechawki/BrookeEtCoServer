@@ -14,7 +14,7 @@ export const getAllLivres = (request, response) => {
 
 export const getLivresById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Livres WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Livres WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Livres :', err);
       response.status(500).send('Erreur lors de la récupération du Livres');
@@ -49,7 +49,7 @@ export const createLivres = (request, response) => {
 export const updateLivre = (request, response) => {
   const id = request.params.id;
   const livre = request.body;
-  connection.query("UPDATE Livres SET ? WHERE id = ?", [livre, id], (err, result, fields) => {
+  connection.query("UPDATE Livres SET ? WHERE idProduit = ?", [livre, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Livre :', err);
       response.status(500).send('Erreur lors de la mise à jour du Livre');
@@ -61,7 +61,7 @@ export const updateLivre = (request, response) => {
 
 export const deleteLivre = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Livres WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Livres WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Livre :', err);
       response.status(500).send('Erreur lors de la suppression du Livre');

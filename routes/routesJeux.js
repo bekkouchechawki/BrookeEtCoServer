@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 
 app.get("/getAllJeux", getAllJeux);
 app.get("/getAllJeux/:id", getJeuxById);
-app.post("/createFilms", createJeux);
-app.put("/updateFilms/:id", updateJeux);
-app.delete("/deleteFilm/:id", deleteJeux);
+app.post("/createJeux", createJeux);
+app.put("/updateJeux/:id", updateJeux);
+app.delete("/deleteJeux/:id", deleteJeux);
 
 export default app;

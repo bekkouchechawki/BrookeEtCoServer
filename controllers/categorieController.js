@@ -14,7 +14,7 @@ export const getAllCategories = (request, response) => {
 
 export const getCategorieById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Catégories WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Catégories WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du categorie :', err);
       response.status(500).send('Erreur lors de la récupération du categorie');
@@ -49,7 +49,7 @@ export const createCategorie = (request, response) => {
 export const updateCategorie = (request, response) => {
   const id = request.params.id;
   const categorie = request.body;
-  connection.query("UPDATE Catégories SET ? WHERE id = ?", [categorie, id], (err, result, fields) => {
+  connection.query("UPDATE Catégories SET ? WHERE idProduit = ?", [categorie, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du categorie :', err);
       response.status(500).send('Erreur lors de la mise à jour du categorie');
@@ -61,7 +61,7 @@ export const updateCategorie = (request, response) => {
 
 export const deleteCategorie = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Catégories WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Catégories WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du produit :', err);
       response.status(500).send('Erreur lors de la suppression du categorie');

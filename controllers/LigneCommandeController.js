@@ -14,7 +14,7 @@ export const getAllLigneCommande = (request, response) => {
 
 export const getLigneCommandeById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM LigneCommande WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM LigneCommande WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du LigneCommande :', err);
       response.status(500).send('Erreur lors de la récupération du Ligne de Commande');
@@ -49,7 +49,7 @@ export const createLigneCommande = (request, response) => {
 export const updateLigneCommande = (request, response) => {
   const id = request.params.id;
   const ligneCommande = request.body;
-  connection.query("UPDATE LigneCommande SET ? WHERE id = ?", [ligneCommande, id], (err, result, fields) => {
+  connection.query("UPDATE LigneCommande SET ? WHERE idProduit = ?", [ligneCommande, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Ligne de Commande :', err);
       response.status(500).send('Erreur lors de la mise à jour du Ligne de Commande');
@@ -61,7 +61,7 @@ export const updateLigneCommande = (request, response) => {
 
 export const deleteLigneCommande = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM LigneCommande WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM LigneCommande WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Ligne de Commande :', err);
       response.status(500).send('Erreur lors de la suppression du Ligne de Commande');

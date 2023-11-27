@@ -14,7 +14,7 @@ export const getAllEmployes = (request, response) => {
 
 export const getEmployeById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Employe WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Employe WHERE matricule = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération d employe :', err);
       response.status(500).send('Erreur lors de la récupération d employe');
@@ -49,7 +49,7 @@ export const createEmploye = (request, response) => {
 export const updateEmploye = (request, response) => {
   const id = request.params.id;
   const employe = request.body;
-  connection.query("UPDATE Employe SET ? WHERE id = ?", [employe, id], (err, result, fields) => {
+  connection.query("UPDATE Employe SET ? WHERE matricule = ?", [employe, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour d employe :', err);
       response.status(500).send('Erreur lors de la mise à jour d employe');
@@ -61,7 +61,7 @@ export const updateEmploye = (request, response) => {
 
 export const deletEmploye = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Employe WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Employe WHERE matricule = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression d employe :', err);
       response.status(500).send('Erreur lors de la suppression d employe');

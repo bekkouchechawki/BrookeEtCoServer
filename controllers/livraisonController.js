@@ -14,7 +14,7 @@ export const getAllLivraison = (request, response) => {
 
 export const getLivraisonById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Livraison WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Livraison WHERE numeroCommande = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Livraison :', err);
       response.status(500).send('Erreur lors de la récupération du Livraison');
@@ -49,7 +49,7 @@ export const createLivraison = (request, response) => {
 export const updateLivraison = (request, response) => {
   const id = request.params.id;
   const livraison = request.body;
-  connection.query("UPDATE Livraison SET ? WHERE id = ?", [livraison, id], (err, result, fields) => {
+  connection.query("UPDATE Livraison SET ? WHERE numeroCommande = ?", [livraison, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Livraison :', err);
       response.status(500).send('Erreur lors de la mise à jour du Livraison');
@@ -61,7 +61,7 @@ export const updateLivraison = (request, response) => {
 
 export const deleteLivraison = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Livraison WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Livraison WHERE numeroCommande = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Livraison :', err);
       response.status(500).send('Erreur lors de la suppression du Livraison');

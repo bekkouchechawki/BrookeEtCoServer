@@ -14,7 +14,7 @@ export const getAllFilms = (request, response) => {
 
 export const getFilmsById = (request, response) => {
   const id = request.params.id;
-  connection.query("SELECT * FROM Films WHERE id = ?", id, (err, result, fields) => {
+  connection.query("SELECT * FROM Films WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la récupération du Film :', err);
       response.status(500).send('Erreur lors de la récupération du Film');
@@ -49,7 +49,7 @@ export const createFilms = (request, response) => {
 export const updateFilms = (request, response) => {
   const id = request.params.id;
   const film = request.body;
-  connection.query("UPDATE Films SET ? WHERE id = ?", [film, id], (err, result, fields) => {
+  connection.query("UPDATE Films SET ? WHERE idProduit = ?", [film, id], (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la mise à jour du Film :', err);
       response.status(500).send('Erreur lors de la mise à jour du Film');
@@ -61,7 +61,7 @@ export const updateFilms = (request, response) => {
 
 export const deleteFilm = (request, response) => {
   const id = request.params.id;
-  connection.query("DELETE FROM Films WHERE id = ?", id, (err, result, fields) => {
+  connection.query("DELETE FROM Films WHERE idProduit = ?", id, (err, result, fields) => {
     if (err) {
       console.error('Erreur lors de la suppression du Film :', err);
       response.status(500).send('Erreur lors de la suppression du Film');
