@@ -43,6 +43,7 @@ export const createClient = (request, response) => {
     } else {
       response.status(200).send("Client ajouté");
     }
+    connection.end(); 
   });
 };
 

@@ -9,6 +9,7 @@ export const getAllLivraison = (request, response) => {
     } else {
       response.status(200).json(result);
     }
+    connection.end(); 
   });
 };
 
